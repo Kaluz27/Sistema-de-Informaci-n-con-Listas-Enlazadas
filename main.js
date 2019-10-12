@@ -6,7 +6,6 @@ export default class Main {
     constructor() {
         document.querySelector("#agregar").addEventListener("click", () =>{
 
- 
         let registro = new Registro();
         let codigo = Number(document.querySelector("#codigo").value);
         let nombre = document.querySelector("#nombre").value;
@@ -24,9 +23,16 @@ export default class Main {
 
         let articulo = new Articulo(objArticulo);
 
-        registro._agregarArticulo(articulo);
-
+        registro.agregarArticulo(articulo);
+        //console.log(registro._articuloInicial);
     }) 
+    let btnBuscador = document.getElementById('btnBuscar');
+
+    btnBuscador.addEventListener('click', () => {
+        let codigo = document.getElementById('codigo').value;
+        registro.buscarArticulo(codigo);
+
+    })
     }
 }
-let m = new Main;
+let m = new Main();

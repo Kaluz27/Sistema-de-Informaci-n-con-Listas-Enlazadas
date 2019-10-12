@@ -1,22 +1,33 @@
-export default class Registro{
-    constructor(){
-        this._articuloInicial = null;
-        this._articuloFinal = null;
+export default class Registro {
+    constructor() {
+        this._primerArticulo = null;
+        this._ultimoArticulo = null;
     }
 
-    _agregarArticulo(objArticulo){
-        if (this._articuloInicial == null) {
-            this._articuloInicial = objArticulo;
-            this._articuloFinal = objArticulo;
-        }else{
-            let libre = this._articuloFinal;
-            this._articuloFinal.siguiente = objArticulo;
-            this._articuloFinal= objArticulo;
-            this._articuloFinal = libre;
+    agregarArticulo(articulo) {
+        if (this._primerArticulo == null) {
+            this._primerArticulo = articulo;
+        } else {
+            this._ultimoArticulo._next = articulo;
         }
-
-        console.log(this._articuloInicial);
-        console.log(this._articuloFinal)
-
+        this._ultimoArticulo = articulo;
+        console.log(this._primerArticulo);
+        console.log(articulo);
     }
+
+    buscarArticulo(codigo) {
+        if (this._primerArticulo != null) {
+            let encontrado = false;
+            let temp = this._primerArticulo;
+            while (!encontrado && temp != null) {
+                if (codigo == temp.codigo) {
+                    encontrado = true;
+                } else {
+                    temp = temp.next;
+                }
+            }
+            return temp;
+        } else {
+            return null;
+        }
 }
